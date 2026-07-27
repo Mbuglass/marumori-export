@@ -1,0 +1,35 @@
+{
+  "name": "marumori-export",
+  "version": "1.0.0",
+  "description": "Browser extension and userscript to export MaruMori vocabulary and kanji as JSON, CSV, TSV, or a plain text list",
+  "main": "src/background.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "marumori",
+    "browser-extension",
+    "userscript",
+    "tampermonkey",
+    "japanese",
+    "vocabulary",
+    "kanji",
+    "export"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mbuglass/marumori-export.git"
+  },
+  "author": "Mbuglass",
+  "license": "MIT",
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.0"
+  }
+}

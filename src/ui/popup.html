@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaruMori Export</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MaruMori Export</h1>
+    
+    <div id="apiKeySection" class="section">
+      <h2>API Configuration</h2>
+      <div class="form-group">
+        <label for="apiKey">API Key:</label>
+        <input type="password" id="apiKey" placeholder="Enter your MaruMori API key">
+        <small>Get your key from <a href="https://marumori.io/settings" target="_blank" rel="noopener noreferrer">MaruMori Settings</a></small>
+      </div>
+      <button id="saveApiKey">Save API Key</button>
+      <div id="message" class="message"></div>
+    </div>
+
+    <div id="exportSection" class="section" style="display: none;">
+      <h2>Quick Export</h2>
+      <div class="form-group preset-buttons">
+        <button type="button" id="presetDailyReview" class="preset-btn">Daily Review (All)</button>
+        <button type="button" id="presetHighConfidence" class="preset-btn">High Confidence (Lvl 5+)</button>
+        <button type="button" id="presetVocabOnly" class="preset-btn">Vocab Only (All)</button>
+        <button type="button" id="presetKanjiOnly" class="preset-btn">Kanji Only (All)</button>
+      </div>
+      <small>Presets apply their settings below and export immediately using the current export format.</small>
+
+      <h2>Export Options</h2>
+
+      <div class="form-group">
+        <label for="contentType">Content:</label>
+        <select id="contentType">
+          <option value="vocabulary">Vocabulary Only</option>
+          <option value="kanji">Kanji Only</option>
+          <option value="both">Vocabulary + Kanji</option>
+        </select>
+        <small>Kanji and vocabulary are tracked separately in MaruMori — you can know a kanji without knowing its vocabulary forms, or vice versa. Kanji-only entries aren't useful for tools that work off sentence or word data.</small>
+      </div>
+
+      <div id="minLevelVocabularyGroup" class="form-group">
+        <label for="minLevelVocabulary">Minimum Vocabulary SRS Level:</label>
+        <select id="minLevelVocabulary">
+          <option value="">All Levels</option>
+          <option value="1">1 and above</option>
+          <option value="2">2 and above</option>
+          <option value="3">3 and above</option>
+          <option value="4">4 and above</option>
+          <option value="5">5 and above</option>
+          <option value="6">6 and above</option>
+          <option value="7">7 and above</option>
+          <option value="8">8 and above</option>
+          <option value="9">9 (Burned)</option>
+        </select>
+        <small>Freshly learned items (low levels) haven't been reviewed much yet — raise this if you don't want them treated as known just yet.</small>
+      </div>
+
+      <div id="minLevelKanjiGroup" class="form-group">
+        <label for="minLevelKanji">Minimum Kanji SRS Level:</label>
+        <select id="minLevelKanji">
+          <option value="">All Levels</option>
+          <option value="1">1 and above</option>
+          <option value="2">2 and above</option>
+          <option value="3">3 and above</option>
+          <option value="4">4 and above</option>
+          <option value="5">5 and above</option>
+          <option value="6">6 and above</option>
+          <option value="7">7 and above</option>
+          <option value="8">8 and above</option>
+          <option value="9">9 (Burned)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exportFormat">Export Format:</label>
+        <select id="exportFormat">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+          <option value="tsv">TSV</option>
+          <option value="text">Plain text (one per line)</option>
+        </select>
+        <small>TSV has term, reading and definition columns; reading and definition are blank because MaruMori's known-items API does not provide them. Plain text is just the terms, one per line, with no headers or other metadata.</small>
+      </div>
+
+      <button id="exportBtn">Export Data</button>
+      <div id="progress" class="progress" style="display: none;">
+        <p id="progressText">Loading...</p>
+      </div>
+    </div>
+
+    <div id="settingsLink" class="section">
+      <button id="changeApiKey">Change API Key</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

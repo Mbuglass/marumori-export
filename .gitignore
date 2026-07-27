@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.local
+*.key
+*.pem
+
+# Dependencies
+node_modules/
+
+# Build output. The Tampermonkey bundle is committed so it can be installed
+# directly from GitHub without a local build; everything else is generated.
+dist/*
+!dist/tampermonkey.user.js
+*.zip
+*.crx
+
+# Testing
+coverage/
+
+# Editors & OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
